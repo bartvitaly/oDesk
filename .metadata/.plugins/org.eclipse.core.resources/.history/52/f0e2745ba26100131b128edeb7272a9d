@@ -1,7 +1,0 @@
-class Case
-  def asd
-    puts "asd"
-  end
-end
-
-Case::new::asd

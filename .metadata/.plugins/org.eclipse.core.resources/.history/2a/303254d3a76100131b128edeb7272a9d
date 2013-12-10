@@ -1,7 +1,0 @@
-require_relative '../common/PropertyUtils'
-class WebDriverUtils
-
-  propertyUtils = PropertyUtils.new
-  puts propertyUtils::get_property("browser")
-
-end

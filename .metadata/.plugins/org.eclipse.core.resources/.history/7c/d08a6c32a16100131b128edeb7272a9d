@@ -1,7 +1,0 @@
-class Asd
-  def asd
-    puts "asd"
-  end
-end
-
-Asd::new::asd

@@ -1,4 +1,0 @@
-require('Asd')
-
-asd = Asd.new
-asd::asd
