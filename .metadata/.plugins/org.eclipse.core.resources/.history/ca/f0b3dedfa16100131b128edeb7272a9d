@@ -1,0 +1,4 @@
+include 'case.rb'
+
+asd = Asd.new
+asd::asd

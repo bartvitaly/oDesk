@@ -1,0 +1,4 @@
+require 'case'
+
+asd = Asd.new
+asd::asd

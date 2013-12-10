@@ -1,0 +1,4 @@
+require_relative '././pages/case'
+
+case1 = Case.new
+case1::asd

@@ -1,0 +1,5 @@
+def asd
+  puts "asd"
+end
+
+asd()

@@ -1,0 +1,9 @@
+
+class asd
+def asd
+  puts "asd"
+end
+end  
+
+
+asd

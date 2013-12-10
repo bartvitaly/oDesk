@@ -2,17 +2,17 @@ require 'rubygems'
 require 'selenium-webdriver'
 
 #require 'test-unit'
-require 'minitest'
+#require 'minitest'
 
-MiniTest::Unit::after_tests() {
+require_relative '../common/WebDriverUtils'
+require_relative '../common/PropertyUtils'
+class Test1
 
-  puts "some text"
+  propertyUtils = PropertyUtils.new
+  url = propertyUtils::get_property("url")
 
-}
-class TC_Calculator < MiniTest::Unit::TestCase
-
-  driver = Selenium::WebDriver.for :firefox
-  driver.get "http://google.com"
+  driver = WebDriverUtils::new::get_driver
+  driver.get url
 
   element = driver.find_element :name => "q"
   element.send_keys "Cheese!"

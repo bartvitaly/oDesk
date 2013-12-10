@@ -1,0 +1,4 @@
+require_relative '../common/PropertyUtils'
+
+case1 = PropertyUtils.new
+puts case1::asd
