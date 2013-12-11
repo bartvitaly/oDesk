@@ -1,0 +1,4 @@
+require_relative '../common/PropertyUtils'
+
+propertyUtils = PropertyUtils.new
+puts propertyUtils::get_property("browser")
