@@ -16,21 +16,10 @@ class WebDriverUtils
   end
 
   def wait_js_load()
-    $i = 0
-    $timeout = Integer(PropertyUtils.get_property("timeout"))
-
-    while $i < $timeout  do
-      if @@driver.execute_script("return jQuery.active == 0") then
-      break
-      end
-      $i +=1
-      sleep(1)
-    end
-
+    wait.until { @@driver.execute_script("return jQuery.active == 0") }
   end
 
   def wait(element)
-    wait_js_load
     wait = Selenium::WebDriver::Wait.new(:timeout => 10) # seconds
     element = wait.until { element }
   end

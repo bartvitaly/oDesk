@@ -30,7 +30,6 @@ class WebDriverUtils
   end
 
   def wait(element)
-    wait_js_load
     wait = Selenium::WebDriver::Wait.new(:timeout => 10) # seconds
     element = wait.until { element }
   end
