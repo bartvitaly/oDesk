@@ -578,3 +578,18 @@ org.jruby.exceptions.RaiseException: (Errno::EINVAL) =::
 
 !ENTRY com.aptana.ruby.core 4 0 2013-12-11 09:29:06.622
 !MESSAGE (Build 3.4.2.201308081805) [ERROR]  AST stack was empty upon exiting type declaration, but should have contained the type.
+
+!ENTRY com.aptana.ruby.core 4 0 2013-12-11 09:48:36.870
+!MESSAGE (Build 3.4.2.201308081805) [ERROR]  Expected field decl on top of stack, but was: 
+
+!ENTRY com.aptana.ruby.core 4 0 2013-12-11 09:48:36.870
+!MESSAGE (Build 3.4.2.201308081805) [ERROR]  Expected block on top of stack, but was: parse(argv)
+
+!ENTRY com.aptana.ruby.core 4 0 2013-12-11 09:48:36.871
+!MESSAGE (Build 3.4.2.201308081805) [ERROR]  Expected method decl on top of stack, but was: RDoc::Options
+
+!ENTRY com.aptana.ruby.core 4 0 2013-12-11 09:48:36.871
+!MESSAGE (Build 3.4.2.201308081805) [ERROR]  Expected type decl on top of stack, but was: 
+
+!ENTRY com.aptana.ruby.core 4 0 2013-12-11 09:48:36.872
+!MESSAGE (Build 3.4.2.201308081805) [ERROR]  AST stack was empty upon exiting script, but should have contained the script.

@@ -6,18 +6,18 @@ require_relative '../common/WebDriverUtils'
 require_relative '../common/PropertyUtils'
 class Test1 < Test::Unit::TestCase
   def setup
-    url = PropertyUtils.get_property "url"
+    url = PropertyUtils.get_property("url")
     @webDriverUtils = WebDriverUtils::new
     @driver = @webDriverUtils::get_driver
     @driver.get url
   end
 
   def test
-    element = @webDriverUtils.find_element_xpath "//a[text()='Hire Freelancers']"
-    @webDriverUtils.click element
+    element = @driver.find_element :xpath => "//a[text()='Hire Freelancers1']"
+    @webDriverUtils.click(element)
     puts "Page title is #{@driver.title}"
 
-    element = @webDriverUtils.find_element_xpath "//input[@name='q']"
+    element = @driver.find_element :xpath => "//input[@name='q']"
     @webDriverUtils.submit(element, PropertyUtils.get_property("keyword"))
 
     puts "Page title is #{@driver.title}"

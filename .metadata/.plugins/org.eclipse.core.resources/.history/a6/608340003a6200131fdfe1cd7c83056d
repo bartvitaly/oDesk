@@ -38,7 +38,7 @@ class WebDriverUtils
   def find_element_xpath(xpath)
     wait_js_load
     wait = Selenium::WebDriver::Wait.new(:timeout => @@timeout) # seconds
-    element = wait.until { @@driver.find_element :xpath => xpath }
+    element = wait.until { @driver.find_element :xpath => xpath }
   end
 
   def type(element, text)

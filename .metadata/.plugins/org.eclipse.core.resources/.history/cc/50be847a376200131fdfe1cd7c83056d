@@ -7,7 +7,6 @@ class WebDriverUtils
   def initialize
     browser = PropertyUtils.get_property("browser")
     @@driver = Selenium::WebDriver.for :"#{browser}"
-    @@timeout = Integer(PropertyUtils.get_property("timeout"))
   end
 
   def get_driver
@@ -18,8 +17,9 @@ class WebDriverUtils
 
   def wait_js_load
     $i = 0
+    $timeout = Integer(PropertyUtils.get_property("timeout"))
 
-    while $i < @@timeout  do
+    while $i < $timeout  do
       if @@driver.execute_script("return jQuery.active == 0") then
       break
       end
@@ -31,14 +31,8 @@ class WebDriverUtils
 
   def wait(element)
     wait_js_load
-    wait = Selenium::WebDriver::Wait.new(:timeout => @@timeout) # seconds
+    wait = Selenium::WebDriver::Wait.new(:timeout => 10) # seconds
     element = wait.until { element }
-  end
-
-  def find_element_xpath(xpath)
-    wait_js_load
-    wait = Selenium::WebDriver::Wait.new(:timeout => @@timeout) # seconds
-    element = wait.until { @@driver.find_element :xpath => xpath }
   end
 
   def type(element, text)
