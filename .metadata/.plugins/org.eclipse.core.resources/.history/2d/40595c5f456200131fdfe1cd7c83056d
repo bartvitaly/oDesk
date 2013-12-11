@@ -23,15 +23,7 @@ class SearchPage < WebDriverUtils
   end
 
   def get_search_items
-    elements find_elements_xpath "//ul[@class='oSearchResultsList']/li[@class='oSearchResultItem']"
-  end
-
-  def get_names
-    elements get_search_items
-    for element in elements
-      element.
-    end  
-    
+    @@driver.find_elements_xpath "//ul[@class='oSearchResultsList']/li[@class='oSearchResultItem']"
   end
 
 end

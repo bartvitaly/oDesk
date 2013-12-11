@@ -9,7 +9,6 @@ require_relative '../pages/SearchPage'
 class Test1 < Test::Unit::TestCase
   @@driver = nil
   def setup
-    #initiate Selenium WebDriver
     url = PropertyUtils.get_property "url"
     @webDriverUtils = WebDriverUtils::new
     @@driver = @webDriverUtils::get_driver
@@ -23,8 +22,6 @@ class Test1 < Test::Unit::TestCase
 
     #search for a freelancer by keyword
     @searchPage.search PropertyUtils.get_property "keyword"
-    elements = @searchPage.get_search_items
-    
 
   #store search results
 

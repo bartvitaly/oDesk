@@ -35,25 +35,13 @@ class WebDriverUtils
     element = wait.until { @@driver.find_element :xpath => xpath }
   end
 
-  def find_element_element  xpath
-    wait_js_load
-    wait = Selenium::WebDriver::Wait.new(:timeout => @@timeout) # seconds
-    element = wait.until { @@driver.find_element :xpath => xpath }
-  end
-
-  def find_elements_xpath xpath
-    wait_js_load
-    wait = Selenium::WebDriver::Wait.new(:timeout => @@timeout) # seconds
-    elements = wait.until { @@driver.find_elements :xpath => xpath }
-  end
-
   def type element, text
     element.send_keys text
   end
 
   def submit element, text
     type element, text
-    element.submit
+    element.submit    
   end
 
   def click element
