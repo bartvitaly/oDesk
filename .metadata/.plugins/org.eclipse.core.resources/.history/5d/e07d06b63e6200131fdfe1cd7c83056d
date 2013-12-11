@@ -1,0 +1,28 @@
+require 'page-object'
+require 'selenium/webdriver'
+
+class StartPage
+  include PageObject
+
+  DEFAULT_DATA = {
+    'email' => 'habrahabr@gmail.com'
+  }
+
+  def initialize(driver)
+    @@driver = driver
+  end
+
+  #basic elements
+  text_field(:email, :name => 'mail')
+  checkbox(:showPassword, :id => 'showPassword')
+  select_list(:source, :name => 'informationSource')
+  button(:register, :name => "register")
+
+  # Exception
+  span(:errorCode, :xpath => "//form[@id='registrationForm']/table/tbody/tr[9]/td[2]/span/span[2]")
+
+  def default(data = {})
+    element = @webDriverUtils.find_element_xpath "//a[text()='Hire Freelancers']"
+    @webDriverUtils.click element
+  end
+end

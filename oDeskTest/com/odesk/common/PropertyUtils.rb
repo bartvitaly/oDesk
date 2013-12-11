@@ -1,6 +1,6 @@
 class PropertyUtils
   #get property value by name
-  def  self.get_property(property_name)
+  def  self.get_property property_name
     load_properties["#{property_name}"]
   end
 

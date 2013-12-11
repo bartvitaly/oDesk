@@ -1,0 +1,15 @@
+require 'page-object'
+require 'selenium/webdriver'
+
+class SearchPage
+  include PageObject
+
+  #basic elements
+  unordered_list(:searchResults, :xpath => "//ul[@class='oSearchResultsList']")
+  list_item(:searchItem, :xpath => "//li[@class='oSearchResultItem']")
+  name item + "//span[@itemprop='name']"
+  def get_items
+
+  end
+
+end

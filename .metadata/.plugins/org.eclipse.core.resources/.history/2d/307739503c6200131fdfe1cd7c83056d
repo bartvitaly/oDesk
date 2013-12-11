@@ -1,0 +1,20 @@
+require 'page-object'
+require 'selenium/webdriver'
+
+class SearchPage
+  include PageObject
+
+  #basic elements
+  text_field(:email, :name => 'mail')
+  checkbox(:showPassword, :id => 'showPassword')
+  select_list(:source, :name => 'informationSource')
+  button(:register, :name => "register")
+
+  # Exception
+  span(:errorCode, :xpath => "//form[@id='registrationForm']/table/tbody/tr[9]/td[2]/span/span[2]")
+  def default(data = {})
+    populate_page_with DEFAULT_DATA.merge(data)
+    check_agreement
+    register
+  end
+end

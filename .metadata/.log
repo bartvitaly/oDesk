@@ -593,3 +593,177 @@ org.jruby.exceptions.RaiseException: (Errno::EINVAL) =::
 
 !ENTRY com.aptana.ruby.core 4 0 2013-12-11 09:48:36.872
 !MESSAGE (Build 3.4.2.201308081805) [ERROR]  AST stack was empty upon exiting script, but should have contained the script.
+
+!ENTRY com.aptana.ruby.core 4 0 2013-12-11 10:23:46.712
+!MESSAGE (Build 3.4.2.201308081805) [ERROR]  Expected field decl on top of stack, but was: 
+
+!ENTRY com.aptana.ruby.core 4 0 2013-12-11 10:23:46.713
+!MESSAGE (Build 3.4.2.201308081805) [ERROR]  Expected block on top of stack, but was: bmbm(&blk)
+
+!ENTRY com.aptana.ruby.core 4 0 2013-12-11 10:23:46.713
+!MESSAGE (Build 3.4.2.201308081805) [ERROR]  Expected method decl on top of stack, but was: Benchmark
+
+!ENTRY com.aptana.ruby.core 4 0 2013-12-11 10:23:46.714
+!MESSAGE (Build 3.4.2.201308081805) [ERROR]  Expected type decl on top of stack, but was: 
+
+!ENTRY com.aptana.ruby.core 4 0 2013-12-11 10:23:46.714
+!MESSAGE (Build 3.4.2.201308081805) [ERROR]  null
+!STACK 0
+java.util.EmptyStackException
+	at java.util.Stack.peek(Unknown Source)
+	at com.aptana.ruby.core.RubyStructureBuilder.enterField(RubyStructureBuilder.java:202)
+	at com.aptana.ruby.core.ast.SourceElementVisitor.visitLocalAsgnNode(SourceElementVisitor.java:836)
+	at org.jrubyparser.ast.LocalAsgnNode.accept(LocalAsgnNode.java:62)
+	at com.aptana.ruby.core.ast.AbstractVisitor.acceptNode(AbstractVisitor.java:53)
+	at com.aptana.ruby.core.ast.InOrderVisitor.visitNewlineNode(InOrderVisitor.java:525)
+	at org.jrubyparser.ast.NewlineNode.accept(NewlineNode.java:67)
+	at com.aptana.ruby.core.ast.AbstractVisitor.acceptNode(AbstractVisitor.java:37)
+	at com.aptana.ruby.core.ast.InOrderVisitor.visitIfNode(InOrderVisitor.java:438)
+	at org.jrubyparser.ast.IfNode.accept(IfNode.java:65)
+	at com.aptana.ruby.core.ast.AbstractVisitor.acceptNode(AbstractVisitor.java:53)
+	at com.aptana.ruby.core.ast.InOrderVisitor.visitNewlineNode(InOrderVisitor.java:525)
+	at org.jrubyparser.ast.NewlineNode.accept(NewlineNode.java:67)
+	at com.aptana.ruby.core.ast.AbstractVisitor.acceptNode(AbstractVisitor.java:37)
+	at com.aptana.ruby.core.ast.InOrderVisitor.visitRootNode(InOrderVisitor.java:668)
+	at com.aptana.ruby.core.ast.SourceElementVisitor.visitRootNode(SourceElementVisitor.java:848)
+	at org.jrubyparser.ast.RootNode.accept(RootNode.java:84)
+	at com.aptana.ruby.core.ast.AbstractVisitor.acceptNode(AbstractVisitor.java:53)
+	at com.aptana.ruby.core.RubyParser.parse(RubyParser.java:89)
+	at com.aptana.parsing.AbstractParser.parse(AbstractParser.java:10)
+	at com.aptana.parsing.ParsingEngine.parse(ParsingEngine.java:368)
+	at com.aptana.parsing.ParserPoolFactory.parse(ParserPoolFactory.java:230)
+	at com.aptana.parsing.ParserPoolFactory.parse(ParserPoolFactory.java:217)
+	at com.aptana.parsing.ParserPoolFactory.parse(ParserPoolFactory.java:200)
+	at com.aptana.ruby.internal.core.codeassist.RubyCodeResolver.parseURI(RubyCodeResolver.java:286)
+	at com.aptana.ruby.internal.core.codeassist.RubyCodeResolver.getMatchingElementHyperlinks(RubyCodeResolver.java:399)
+	at com.aptana.ruby.internal.core.codeassist.RubyCodeResolver.findMethods(RubyCodeResolver.java:335)
+	at com.aptana.ruby.internal.core.codeassist.RubyCodeResolver.noReceiverMethodCallLink(RubyCodeResolver.java:140)
+	at com.aptana.ruby.internal.core.codeassist.RubyCodeResolver.resolve(RubyCodeResolver.java:88)
+	at com.aptana.editor.ruby.hyperlink.RubyHyperlinkDetector.detectHyperlinks(RubyHyperlinkDetector.java:58)
+	at org.eclipse.ui.texteditor.HyperlinkDetectorRegistry$HyperlinkDetectorDelegate.detectHyperlinks(HyperlinkDetectorRegistry.java:80)
+	at org.eclipse.jface.text.hyperlink.HyperlinkManager.findHyperlinks(HyperlinkManager.java:286)
+	at org.eclipse.jface.text.hyperlink.HyperlinkManager.findHyperlinks(HyperlinkManager.java:258)
+	at org.eclipse.jface.text.hyperlink.HyperlinkManager.mouseMove(HyperlinkManager.java:462)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:211)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4165)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3754)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2701)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2665)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2499)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:679)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:668)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at com.aptana.rcp.IDEApplication.start(IDEApplication.java:125)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:344)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:622)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:577)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1410)
+
+!ENTRY com.aptana.ruby.core 4 0 2013-12-11 10:45:15.555
+!MESSAGE (Build 3.4.2.201308081805) [ERROR]  Expected field decl on top of stack, but was: 
+
+!ENTRY com.aptana.ruby.core 4 0 2013-12-11 10:45:15.556
+!MESSAGE (Build 3.4.2.201308081805) [ERROR]  Expected block on top of stack, but was: outdated()
+
+!ENTRY com.aptana.ruby.core 4 0 2013-12-11 10:45:15.557
+!MESSAGE (Build 3.4.2.201308081805) [ERROR]  Expected method decl on top of stack, but was: Gem::SourceIndex
+
+!ENTRY com.aptana.ruby.core 4 0 2013-12-11 10:45:15.557
+!MESSAGE (Build 3.4.2.201308081805) [ERROR]  Expected type decl on top of stack, but was: 
+
+!ENTRY com.aptana.ruby.core 4 0 2013-12-11 10:45:15.558
+!MESSAGE (Build 3.4.2.201308081805) [ERROR]  null
+!STACK 0
+java.util.EmptyStackException
+	at java.util.Stack.peek(Unknown Source)
+	at com.aptana.ruby.core.RubyStructureBuilder.enterType(RubyStructureBuilder.java:252)
+	at com.aptana.ruby.core.ast.SourceElementVisitor.visitModuleNode(SourceElementVisitor.java:822)
+	at org.jrubyparser.ast.ModuleNode.accept(ModuleNode.java:66)
+	at com.aptana.ruby.core.ast.AbstractVisitor.acceptNode(AbstractVisitor.java:53)
+	at com.aptana.ruby.core.ast.InOrderVisitor.visitNewlineNode(InOrderVisitor.java:525)
+	at org.jrubyparser.ast.NewlineNode.accept(NewlineNode.java:67)
+	at com.aptana.ruby.core.ast.AbstractVisitor.acceptNode(AbstractVisitor.java:37)
+	at com.aptana.ruby.core.ast.InOrderVisitor.visitRootNode(InOrderVisitor.java:668)
+	at com.aptana.ruby.core.ast.SourceElementVisitor.visitRootNode(SourceElementVisitor.java:848)
+	at org.jrubyparser.ast.RootNode.accept(RootNode.java:84)
+	at com.aptana.ruby.core.ast.AbstractVisitor.acceptNode(AbstractVisitor.java:53)
+	at com.aptana.ruby.core.RubyParser.parse(RubyParser.java:89)
+	at com.aptana.parsing.AbstractParser.parse(AbstractParser.java:10)
+	at com.aptana.parsing.ParsingEngine.parse(ParsingEngine.java:368)
+	at com.aptana.parsing.ParserPoolFactory.parse(ParserPoolFactory.java:230)
+	at com.aptana.parsing.ParserPoolFactory.parse(ParserPoolFactory.java:217)
+	at com.aptana.parsing.ParserPoolFactory.parse(ParserPoolFactory.java:200)
+	at com.aptana.ruby.internal.core.codeassist.RubyCodeResolver.parseURI(RubyCodeResolver.java:286)
+	at com.aptana.ruby.internal.core.codeassist.RubyCodeResolver.getMatchingElementHyperlinks(RubyCodeResolver.java:399)
+	at com.aptana.ruby.internal.core.codeassist.RubyCodeResolver.findMethods(RubyCodeResolver.java:335)
+	at com.aptana.ruby.internal.core.codeassist.RubyCodeResolver.methodCallLink(RubyCodeResolver.java:312)
+	at com.aptana.ruby.internal.core.codeassist.RubyCodeResolver.resolve(RubyCodeResolver.java:91)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.jruby.javasupport.JavaMethod.invokeDirectWithExceptionHandling(JavaMethod.java:525)
+	at org.jruby.javasupport.JavaMethod.invokeDirect(JavaMethod.java:380)
+	at org.jruby.java.invokers.InstanceMethodInvoker.call(InstanceMethodInvoker.java:59)
+	at org.jruby.runtime.callsite.CachingCallSite.call(CachingCallSite.java:167)
+	at org.jruby.ast.CallOneArgNode.interpret(CallOneArgNode.java:57)
+	at org.jruby.ast.NewlineNode.interpret(NewlineNode.java:104)
+	at org.jruby.ast.BlockNode.interpret(BlockNode.java:71)
+	at org.jruby.evaluator.ASTInterpreter.INTERPRET_METHOD(ASTInterpreter.java:75)
+	at org.jruby.internal.runtime.methods.InterpretedMethod.call(InterpretedMethod.java:147)
+	at org.jruby.runtime.callsite.CachingCallSite.call(CachingCallSite.java:133)
+	at org.jruby.ast.CallNoArgNode.interpret(CallNoArgNode.java:63)
+	at org.jruby.ast.NewlineNode.interpret(NewlineNode.java:104)
+	at org.jruby.ast.BlockNode.interpret(BlockNode.java:71)
+	at org.jruby.evaluator.ASTInterpreter.INTERPRET_BLOCK(ASTInterpreter.java:112)
+	at org.jruby.runtime.InterpretedBlock.evalBlockBody(InterpretedBlock.java:374)
+	at org.jruby.runtime.InterpretedBlock.yield(InterpretedBlock.java:328)
+	at org.jruby.runtime.BlockBody.call(BlockBody.java:73)
+	at org.jruby.runtime.Block.call(Block.java:89)
+	at org.jruby.RubyProc.call(RubyProc.java:274)
+	at org.jruby.RubyProc.call(RubyProc.java:233)
+	at com.aptana.scripting.model.CommandBlockRunner.executeBlock(CommandBlockRunner.java:233)
+	at com.aptana.scripting.model.CommandBlockRunner.run(CommandBlockRunner.java:322)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:144)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:180)
+	at com.aptana.scripting.model.CommandElement.execute(CommandElement.java:204)
+	at com.aptana.editor.common.scripting.commands.CommandExecutionUtils.executeCommand(CommandExecutionUtils.java:420)
+	at com.aptana.editor.common.internal.scripting.CommandElementsProvider.execute(CommandElementsProvider.java:49)
+	at com.aptana.scripting.ui.internal.KeybindingsManager.executeCommandElement(KeybindingsManager.java:847)
+	at com.aptana.scripting.ui.internal.KeybindingsManager.access$9(KeybindingsManager.java:845)
+	at com.aptana.scripting.ui.internal.KeybindingsManager$8$1.handleEvent(KeybindingsManager.java:722)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4165)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3754)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2701)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2665)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2499)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:679)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:668)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at com.aptana.rcp.IDEApplication.start(IDEApplication.java:125)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:344)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:622)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:577)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1410)

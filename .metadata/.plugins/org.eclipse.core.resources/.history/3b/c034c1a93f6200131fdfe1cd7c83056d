@@ -1,0 +1,15 @@
+require 'page-object'
+require 'selenium/webdriver'
+
+require_relative '../common/WebDriverUtils'
+class StartPage < WebDriverUtils
+  include PageObject
+  def initialize(driver)
+    @@driver = driver
+  end
+
+  def open_hire_freelancers()
+    element = @webDriverUtils.find_element_xpath "//a[text()='Hire Freelancers']"
+    @webDriverUtils.click element
+  end
+end

@@ -4,24 +4,28 @@ require "test/unit"
 
 require_relative '../common/WebDriverUtils'
 require_relative '../common/PropertyUtils'
+require_relative '../pages/StartPage'
+require_relative '../pages/SearchPage'
 class Test1 < Test::Unit::TestCase
+  @@driver = nil
   def setup
     url = PropertyUtils.get_property "url"
     @webDriverUtils = WebDriverUtils::new
-    @driver = @webDriverUtils::get_driver
-    @driver.get url
+    @@driver = @webDriverUtils::get_driver
+    @@driver.get url
   end
 
   def test
-    element = @webDriverUtils.find_element_xpath "//a[text()='Hire Freelancers']"
-    @webDriverUtils.click element
-    puts "Page title is #{@driver.title}"
+    #open hire freelancers page
+    @startPage = StartPage::new @@driver
+    @searchPage = @startPage.open_hire_freelancers
 
-    element = @webDriverUtils.find_element_xpath "//input[@name='q']"
-    @webDriverUtils.submit(element, PropertyUtils.get_property("keyword"))
+    #search for a freelancer by keyword
+    @searchPage.search PropertyUtils.get_property "keyword"
 
-    puts "Page title is #{@driver.title}"
-    @driver.quit
+    #store search results
+
+    @@driver.quit
   end
 
 end
