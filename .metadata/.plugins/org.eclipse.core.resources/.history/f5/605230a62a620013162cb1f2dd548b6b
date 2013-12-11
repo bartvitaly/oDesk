@@ -1,0 +1,27 @@
+require 'rubygems'
+require 'selenium-webdriver'
+
+require_relative 'PropertyUtils'
+class WebDriverUtils
+  @@driver = nil
+  def initialize
+    browser = PropertyUtils.get_property("browser")
+    if browser == 'firefox'
+      profile = Selenium::WebDriver::Firefox::Profile.new
+      @@driver = Selenium::WebDriver.for :"#{browser}", :profile => profile
+    elsif browser == 'chrome'
+      profile = Selenium::WebDriver::Chrome::Profile.new, :profile => profile
+      @@driver = Selenium::WebDriver.for :"#{browser}"
+    elsif browser == 'ie'
+      @@driver = Selenium::WebDriver.for :"#{browser}"
+    end
+
+  #@@driver = Selenium::WebDriver.for :"#{browser}"
+  end
+
+  def get_driver
+    # @@driver::Options.delete_all_cookies
+    @@driver
+  end
+
+end

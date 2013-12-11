@@ -1,0 +1,18 @@
+require 'rubygems'
+require 'selenium-webdriver'
+
+require_relative 'PropertyUtils'
+class WebDriverUtils
+  @@driver = nil
+  def initialize
+    browser = PropertyUtils.get_property("browser")
+    @@driver = Selenium::WebDriver.for :"#{browser}"
+  end
+
+  def get_driver
+    options = @@driver::Options.new
+    options.delete_all_cookies()
+    @@driver
+  end
+
+end
