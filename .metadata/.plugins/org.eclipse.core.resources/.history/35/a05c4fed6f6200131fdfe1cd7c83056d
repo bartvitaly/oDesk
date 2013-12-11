@@ -5,13 +5,13 @@ require_relative '../common/WebDriverUtils'
 require_relative '../pages/SearchPage'
 class StartPage < WebDriverUtils
   include PageObject
-  @@lnk_search = "//a[text()='Hire Freelancers']"
+  @input_search = "//a[text()='Hire Freelancers']"
   def initialize driver
     @@driver = driver
   end
 
   def open_hire_freelancers
-    element = find_element_xpath @@lnk_search
+    element = find_element_xpath @input_search
     click element
     SearchPage::new @@driver
   end

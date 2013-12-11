@@ -4,8 +4,6 @@ require 'selenium/webdriver'
 require_relative '../common/WebDriverUtils'
 class SearchPage < WebDriverUtils
   include PageObject
-  @input_search = "//input[@name='q']"
-  @list_item_search = "//ul[@class='oSearchResultsList']/li[@class='oSearchResultItem']"
   def initialize driver
     @@driver = driver
   end
@@ -20,12 +18,12 @@ class SearchPage < WebDriverUtils
   def search keyword
     #@search_field = self.text_field(:xpath => "//input[@name='q']")
     #self.search_field.set keyword
-    element = find_element_xpath @input_search
+    element = find_element_xpath "//input[@name='q']"
     submit element, keyword
   end
 
   def get_search_items
-    elements find_elements_xpath @list_item_search
+    elements find_elements_xpath "//ul[@class='oSearchResultsList']/li[@class='oSearchResultItem']"
   end
 
   def get_names
