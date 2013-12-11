@@ -1,0 +1,23 @@
+require 'rubygems'
+require 'selenium-webdriver'
+
+require_relative 'PropertyUtils'
+class WebDriverUtils
+  @@driver = nil
+  def initialize
+    browser = PropertyUtils.get_property("browser")
+    @@driver = Selenium::WebDriver.for :"#{browser}"
+  end
+
+  def get_driver
+    @@driver
+  #options = driver::Options.new
+  #options.delete_all_cookies()
+  end
+
+  def wait(element)
+    wait = @@driver::Wait.new(:timeout => 10)
+    wait.until { @driver.title.downcase.start_with? "cheese!" }
+  end
+
+end

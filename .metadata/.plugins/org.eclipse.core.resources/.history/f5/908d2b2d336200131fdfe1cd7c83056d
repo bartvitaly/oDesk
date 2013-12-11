@@ -1,0 +1,37 @@
+require 'rubygems'
+require 'selenium-webdriver'
+
+require_relative 'PropertyUtils'
+class WebDriverUtils
+  @@driver = nil
+  def initialize
+    browser = PropertyUtils.get_property("browser")
+    @@driver = Selenium::WebDriver.for :"#{browser}"
+  end
+
+  def get_driver
+    @@driver
+  #options = driver::Options.new
+  #options.delete_all_cookies()
+  end
+
+  def wait(element)
+    wait = Selenium::WebDriver::Wait.new(:timeout => 10) # seconds
+    begin
+      element = wait.until { element }
+    ensure
+      driver.quit
+    end
+  end
+
+  def type(element, text)
+    wait(element)
+    element.send_keys text
+  end
+
+  def click(element)
+    wait(element)
+    element.click
+  end
+
+end

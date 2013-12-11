@@ -1,30 +1,26 @@
 require 'rubygems'
 require 'selenium-webdriver'
-require 'minitest'
-require 'minitest/autorun'
+require "test/unit"
 
 require_relative '../common/WebDriverUtils'
 require_relative '../common/PropertyUtils'
-class Test1 < MiniTest::Test
+class Test1 < Test::Unit::TestCase
   def setup
-    propertyUtils = PropertyUtils.new
-    url = propertyUtils::get_property("url")
-
-    @driver = WebDriverUtils::new::get_driver
-    driver.get url
+    url = PropertyUtils.get_property("url")
+    @webDriverUtils = WebDriverUtils::new
+    @driver = @webDriverUtils::get_driver
+    @driver.get url
   end
 
   def test
-    element = @driver.find_element :name => "q"
-    element.send_keys "Cheese!"
-    element.submit
+    element = @driver.find_element :xpath => "//a[text()='Hire Freelancers']"
+    @webDriverUtils.click(element)
+    puts "Page title is #{@driver.title}"
 
-    puts "Page title is #{driver.title}"
+    element = @driver.find_element :xpath => "//input[@name='q']"
+    @webDriverUtils.submit(element, PropertyUtils.get_property("keyword"))
 
-    wait = Selenium::WebDriver::Wait.new(:timeout => 10)
-    wait.until { @driver.title.downcase.start_with? "cheese!" }
-
-    puts "Page title is #{driver.title}"
+    puts "Page title is #{@driver.title}"
     @driver.quit
   end
 

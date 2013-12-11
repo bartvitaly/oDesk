@@ -5,8 +5,7 @@ require_relative 'PropertyUtils'
 class WebDriverUtils
   @@driver = nil
   def initialize
-    propertyUtils = PropertyUtils.new
-    browser = propertyUtils::get_property("browser")
+    browser = PropertyUtils.get_property("browser")
     @@driver = Selenium::WebDriver.for :"#{browser}"
   end
 
@@ -14,6 +13,26 @@ class WebDriverUtils
     @@driver
   #options = driver::Options.new
   #options.delete_all_cookies()
+  end
+
+  def wait(element)
+    wait = Selenium::WebDriver::Wait.new(:timeout => 10) # seconds
+    element = wait.until { element }
+  end
+
+  def type(element, text)
+    wait(element)
+    element.send_keys text
+  end
+
+  def submit(element, text)
+    type(element, text)
+    element.submit
+  end
+
+  def click(element)
+    wait(element)
+    element.click
   end
 
 end
