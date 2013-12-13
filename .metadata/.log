@@ -1631,3 +1631,25 @@ java.io.IOException: Read loop has finished
 	at com.aptana.ruby.internal.debug.core.parsing.ThreadInfoReader.readThreads(ThreadInfoReader.java:31)
 	at com.aptana.ruby.internal.debug.core.RubyDebuggerProxy$2.run(RubyDebuggerProxy.java:239)
 	at java.lang.Thread.run(Unknown Source)
+!SESSION 2013-12-13 16:47:34.318 -----------------------------------------------
+eclipse.buildId=3.4.2.201308081805
+java.version=1.6.0_24
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY com.aptana.ruby.core 4 0 2013-12-13 16:47:38.987
+!MESSAGE (eval):1: Use RbConfig instead of obsolete and deprecated Config.
+(eval):1: warning: variable $= is no longer effective
+(eval):1: warning: variable $KCODE is no longer effective
+(eval):1: warning: variable $KCODE is no longer effective
+C:/Users/vitalii_bartashchuk/AppData/Local/Aptana Studio 3/configuration/org.eclipse.osgi/bundles/93/1/.cp/ruby/core_stubber.rb:180:in `eval': Permission denied - D:\work\projects\oDesk\.metadata\.plugins\com.aptana.ruby.core\-765031072\4 (Errno::EACCES)
+	from C:/Users/vitalii_bartashchuk/AppData/Local/Aptana Studio 3/configuration/org.eclipse.osgi/bundles/93/1/.cp/ruby/core_stubber.rb:180:in `eval'
+	from C:/Users/vitalii_bartashchuk/AppData/Local/Aptana Studio 3/configuration/org.eclipse.osgi/bundles/93/1/.cp/ruby/core_stubber.rb:180:in `block (3 levels) in <main>'
+	from C:/Users/vitalii_bartashchuk/AppData/Local/Aptana Studio 3/configuration/org.eclipse.osgi/bundles/93/1/.cp/ruby/core_stubber.rb:179:in `each'
+	from C:/Users/vitalii_bartashchuk/AppData/Local/Aptana Studio 3/configuration/org.eclipse.osgi/bundles/93/1/.cp/ruby/core_stubber.rb:179:in `block (2 levels) in <main>'
+	from C:/Users/vitalii_bartashchuk/AppData/Local/Aptana Studio 3/configuration/org.eclipse.osgi/bundles/93/1/.cp/ruby/core_stubber.rb:178:in `open'
+	from C:/Users/vitalii_bartashchuk/AppData/Local/Aptana Studio 3/configuration/org.eclipse.osgi/bundles/93/1/.cp/ruby/core_stubber.rb:178:in `block in <main>'
+	from C:/Users/vitalii_bartashchuk/AppData/Local/Aptana Studio 3/configuration/org.eclipse.osgi/bundles/93/1/.cp/ruby/core_stubber.rb:152:in `each'
+	from C:/Users/vitalii_bartashchuk/AppData/Local/Aptana Studio 3/configuration/org.eclipse.osgi/bundles/93/1/.cp/ruby/core_stubber.rb:152:in `<main>'
+
