@@ -8,7 +8,7 @@ class SearchPage < WebDriverUtils
   @@input_search = "//input[@name='q']"
   @@list_item_search = "//ul[@class='oSearchResultsList']/li[@class='oSearchResultItem']"
   @@name = "//span[@itemprop='name']"
-  @@job_title = "//h3[@itemprop='jobTitle role title jobTitle']"
+  @@job_title = "//span[@itemprop='jobTitle role title jobTitle']"
   @@skills = "//ul[@class='oSkillsList oInlineList']"
   @@facts = "//section[@class='oContractorFacts']/ul"
   @@description = "//section[@class='oContractorDescription']/p"

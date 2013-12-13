@@ -4,12 +4,12 @@ require 'selenium/webdriver'
 require_relative '../common/WebDriverUtils'
 class FreelancerPage < WebDriverUtils
   include PageObject
-
+  
   @@name = "//h1[@class='oH1Huge']"
   @@job_title = "//h1[@class='oH2High']"
   @@skills = "//section[@class='oExpandableOneLine oSkills']"
   @@overview = "//section[@class='oOverview']/p[@itemprop='description']"
-
+  
   @@freelancer = []
   def initialize driver
     @@driver = driver
@@ -53,6 +53,5 @@ class FreelancerPage < WebDriverUtils
     @@freelancer << get_job_title
     @@freelancer << get_skills
     @@freelancer << get_overview
-  end
 
 end

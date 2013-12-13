@@ -4,13 +4,10 @@ require 'selenium/webdriver'
 require_relative '../common/WebDriverUtils'
 class FreelancerPage < WebDriverUtils
   include PageObject
-
   @@name = "//h1[@class='oH1Huge']"
   @@job_title = "//h1[@class='oH2High']"
   @@skills = "//section[@class='oExpandableOneLine oSkills']"
   @@overview = "//section[@class='oOverview']/p[@itemprop='description']"
-
-  @@freelancer = []
   def initialize driver
     @@driver = driver
   end
@@ -19,11 +16,11 @@ class FreelancerPage < WebDriverUtils
     find_elements_xpath @@list_item_search
   end
 
-  def get_name
+  def get_names
     get_item_detail(@@name)
   end
 
-  def get_job_title
+  def get_job_titles
     get_item_detail(@@job_title)
   end
 
@@ -31,8 +28,12 @@ class FreelancerPage < WebDriverUtils
     get_item_detail(@@skills)
   end
 
-  def get_overview
-    get_item_detail(@@overview)
+  def get_facts
+    get_item_detail(@@facts)
+  end
+
+  def get_description
+    get_item_detail(@@description)
   end
 
   def get_item_detail(detail_xpath)
@@ -41,18 +42,11 @@ class FreelancerPage < WebDriverUtils
 
     i = 1
     while i < $size + 1
-      detail = find_element_xpath detail_xpath
+      detail = find_element_xpath @@list_item_search + "[#{i}]" + detail_xpath
       details << detail.text
       i += 1
     end
     details
-  end
-
-  def get_freelancers
-    @@freelancer << get_name
-    @@freelancer << get_job_title
-    @@freelancer << get_skills
-    @@freelancer << get_overview
   end
 
 end

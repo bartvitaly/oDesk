@@ -4,16 +4,13 @@ require 'selenium/webdriver'
 require_relative '../common/WebDriverUtils'
 class SearchPage < WebDriverUtils
   include PageObject
-
   @@input_search = "//input[@name='q']"
   @@list_item_search = "//ul[@class='oSearchResultsList']/li[@class='oSearchResultItem']"
   @@name = "//span[@itemprop='name']"
-  @@job_title = "//h3[@itemprop='jobTitle role title jobTitle']"
-  @@skills = "//ul[@class='oSkillsList oInlineList']"
-  @@facts = "//section[@class='oContractorFacts']/ul"
-  @@description = "//section[@class='oContractorDescription']/p"
-
-  @@freelancers = Hash["names", []]
+  @@job_title = "//span[@itemprop='jobTitle role title jobTitle']"
+  @@skills = "//section[@class='oArticleBody']"
+  @@facts = "//section[@class='oContractorFacts']"
+  @@description = "//section[@class='oContractorDescription']"
   def initialize driver
     @@driver = driver
   end
@@ -24,7 +21,7 @@ class SearchPage < WebDriverUtils
   end
 
   def open_freelancer name
-
+    
   end
 
   def get_search_items
@@ -62,14 +59,6 @@ class SearchPage < WebDriverUtils
       i += 1
     end
     details
-  end
-
-  def get_freelancers
-    @@freelancers["names"] = get_names
-    @@freelancers["job_titles"] = get_job_titles
-    @@freelancers["skills"] = get_skills
-    @@freelancers["facts"] = get_facts
-    @@freelancers["description"] = get_description
   end
 
 end

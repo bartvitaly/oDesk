@@ -8,10 +8,10 @@ class SearchPage < WebDriverUtils
   @@input_search = "//input[@name='q']"
   @@list_item_search = "//ul[@class='oSearchResultsList']/li[@class='oSearchResultItem']"
   @@name = "//span[@itemprop='name']"
-  @@job_title = "//h3[@itemprop='jobTitle role title jobTitle']"
-  @@skills = "//ul[@class='oSkillsList oInlineList']"
-  @@facts = "//section[@class='oContractorFacts']/ul"
-  @@description = "//section[@class='oContractorDescription']/p"
+  @@job_title = "//span[@itemprop='jobTitle role title jobTitle']"
+  @@skills = "//section[@class='oArticleBody']"
+  @@facts = "//section[@class='oContractorFacts']"
+  @@description = "//section[@class='oContractorDescription']"
 
   @@freelancers = Hash["names", []]
   def initialize driver
@@ -65,11 +65,11 @@ class SearchPage < WebDriverUtils
   end
 
   def get_freelancers
-    @@freelancers["names"] = get_names
-    @@freelancers["job_titles"] = get_job_titles
-    @@freelancers["skills"] = get_skills
-    @@freelancers["facts"] = get_facts
-    @@freelancers["description"] = get_description
+    @@freelancers["names"] = @searchPage.get_names
+    @@freelancers["job_titles"] = @searchPage.get_job_titles
+    @@freelancers["skills"] = @searchPage.get_skills
+    @@freelancers["facts"] = @searchPage.get_facts
+    @@freelancers["description"] = @searchPage.get_description
   end
 
 end

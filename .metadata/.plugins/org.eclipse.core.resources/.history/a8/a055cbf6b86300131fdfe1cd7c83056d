@@ -27,7 +27,6 @@ class Test1 < Test::Unit::TestCase
     #search for a freelancer by keyword
     @searchPage.search PropertyUtils.get_property "keyword"
     @@freelancers = @searchPage.get_freelancers
-    puts @@freelancers
 
   end
 
