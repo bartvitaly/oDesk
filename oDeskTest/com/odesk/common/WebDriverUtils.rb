@@ -32,19 +32,25 @@ class WebDriverUtils
   def find_element_xpath xpath
     wait_js_load
     wait = Selenium::WebDriver::Wait.new(:timeout => @@timeout) # seconds
-    element = wait.until { @@driver.find_element :xpath => xpath }
+    wait.until { @@driver.find_element :xpath => xpath }
+  end
+
+  def  find_element_element_xpath element, xpath
+    wait_js_load
+    wait = Selenium::WebDriver::Wait.new(:timeout => @@timeout) # seconds
+    wait.until { element.find_element :xpath => xpath }
   end
 
   def find_element_element  xpath
     wait_js_load
     wait = Selenium::WebDriver::Wait.new(:timeout => @@timeout) # seconds
-    element = wait.until { @@driver.find_element :xpath => xpath }
+    wait.until { @@driver.find_element :xpath => xpath }
   end
 
   def find_elements_xpath xpath
     wait_js_load
     wait = Selenium::WebDriver::Wait.new(:timeout => @@timeout) # seconds
-    elements = wait.until { @@driver.find_elements :xpath => xpath }
+    wait.until { @@driver.find_elements :xpath => xpath }
   end
 
   def type element, text

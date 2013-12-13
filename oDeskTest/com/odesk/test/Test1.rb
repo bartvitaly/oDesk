@@ -8,6 +8,9 @@ require_relative '../pages/StartPage'
 require_relative '../pages/SearchPage'
 class Test1 < Test::Unit::TestCase
   @@driver = nil
+  @@freelancers = Hash["names", []]
+  @@names = []
+  @@facts = []
   def setup
     #initiate Selenium WebDriver
     url = PropertyUtils.get_property "url"
@@ -23,10 +26,10 @@ class Test1 < Test::Unit::TestCase
 
     #search for a freelancer by keyword
     @searchPage.search PropertyUtils.get_property "keyword"
-    elements = @searchPage.get_search_items
-    
+    @@freelancers["names"] = @searchPage.get_names
+    @@freelancers["facts"] = @searchPage.get_facts
 
-  #store search results
+
 
   end
 

@@ -1,0 +1,60 @@
+require 'page-object'
+require 'selenium/webdriver'
+
+require_relative '../common/WebDriverUtils'
+class SearchPage < WebDriverUtils
+  include PageObject
+  @@input_search = "//input[@name='q']"
+  @@list_item_search = "//ul[@class='oSearchResultsList']/li[@class='oSearchResultItem']"
+  @@name = "//span[@itemprop='name']"
+  @@job_title = "//span[@itemprop='jobTitle role title jobTitle']"
+  @@skills = "//section[@class='oArticleBody']"
+  @@facts = "//section[@class='oContractorFacts']"
+  @@description = "//section[@class='oContractorDescription']"
+  def initialize driver
+    @@driver = driver
+  end
+
+  def search keyword
+    element = find_element_xpath @@input_search
+    submit element, keyword
+  end
+
+  def  get_search_items
+    find_elements_xpath @@list_item_search
+  end
+
+  def get_names
+    get_item_detail(@@name)
+  end
+
+  def get_job_titles
+    get_item_detail(@@job_title)
+  end
+
+  def get_skills
+    get_item_detail(@@skills)
+  end
+
+  def get_facts
+    get_item_detail(@@facts)
+  end
+
+  def get_description
+    get_item_detail(@@description)
+  end
+
+  def get_item_detail(detail_xpath)
+    $size = get_search_items.length
+    details = []
+
+    i = 1
+    while i < $size + 1
+      detail = find_element_xpath @@list_item_search + "[#{i}]" + detail_xpath
+      details << detail.text
+      i += 1
+    end
+    details
+  end
+
+end
