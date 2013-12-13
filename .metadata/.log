@@ -1592,3 +1592,20 @@ java.io.IOException: Read loop has finished
 	at com.aptana.ruby.internal.debug.core.parsing.ThreadInfoReader.readThreads(ThreadInfoReader.java:31)
 	at com.aptana.ruby.internal.debug.core.RubyDebuggerProxy$2.run(RubyDebuggerProxy.java:239)
 	at java.lang.Thread.run(Unknown Source)
+
+!ENTRY com.aptana.ruby.debug.core 4 4 2013-12-13 14:47:14.871
+!MESSAGE Read loop has finished
+!STACK 0
+java.io.IOException: Read loop has finished
+	at com.aptana.ruby.internal.debug.core.parsing.MultiReaderStrategy.readElement(MultiReaderStrategy.java:171)
+	at com.aptana.ruby.internal.debug.core.parsing.MultiReaderStrategy.readElement(MultiReaderStrategy.java:164)
+	at com.aptana.ruby.internal.debug.core.parsing.XmlStreamReader.read(XmlStreamReader.java:29)
+	at com.aptana.ruby.internal.debug.core.parsing.VariableReader.readVariables(VariableReader.java:54)
+	at com.aptana.ruby.internal.debug.core.parsing.VariableReader.readVariables(VariableReader.java:43)
+	at com.aptana.ruby.internal.debug.core.RubyDebuggerProxy.readVariables(RubyDebuggerProxy.java:295)
+	at com.aptana.ruby.internal.debug.core.model.RubyStackFrame.getVariables(RubyStackFrame.java:47)
+	at org.eclipse.debug.internal.ui.model.elements.StackFrameContentProvider.getAllChildren(StackFrameContentProvider.java:51)
+	at org.eclipse.debug.internal.ui.model.elements.StackFrameContentProvider.getChildCount(StackFrameContentProvider.java:28)
+	at org.eclipse.debug.internal.ui.model.elements.ElementContentProvider.retrieveChildCount(ElementContentProvider.java:114)
+	at org.eclipse.debug.internal.ui.model.elements.ElementContentProvider$2.run(ElementContentProvider.java:63)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)

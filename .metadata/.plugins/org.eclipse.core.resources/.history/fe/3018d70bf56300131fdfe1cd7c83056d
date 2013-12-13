@@ -29,7 +29,7 @@ class Test1 < Test::Unit::TestCase
       assert false, "No search results with keyword: '" + @keyword + "'"
     end
 
-    puts "\nChecking for keyword at Search freelancers page...\n"
+ puts "\nChecking for keyword at Search freelancers page...\n"
     assert @searchPage.check_freelancers(@keyword), "Keyword was not found at search page"
     puts "\nCheck ended\n"
 

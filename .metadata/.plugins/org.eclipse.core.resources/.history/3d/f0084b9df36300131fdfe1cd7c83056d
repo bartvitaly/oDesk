@@ -1,5 +1,5 @@
 browser=firefox
 url=http://odesk.com/
-keyword=qa asshole
+keyword=qa
 timeout=10
 results_dir=C:\

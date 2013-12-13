@@ -24,12 +24,12 @@ class Test1 < Test::Unit::TestCase
 
     #search for a freelancer by keyword
     @searchPage.search @keyword
+    puts "\nChecking for keyword at Search freelancers page...\n"
     length = @searchPage.get_all_freelancers.length
     if length == 0
-      assert false, "No search results with keyword: '" + @keyword + "'"
+      assert false, "No search results with keyword: " + @keyword
     end
 
-    puts "\nChecking for keyword at Search freelancers page...\n"
     assert @searchPage.check_freelancers(@keyword), "Keyword was not found at search page"
     puts "\nCheck ended\n"
 

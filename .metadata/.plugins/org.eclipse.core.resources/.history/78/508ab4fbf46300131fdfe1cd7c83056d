@@ -11,9 +11,8 @@ class StartPage < WebDriverUtils
   end
 
   def open_hire_freelancers
-    puts "\clicking hire freelancers link..."
     element = find_element_xpath @@lnk_search
-    click element
+    click element    
     SearchPage::new @@driver
   end
 end

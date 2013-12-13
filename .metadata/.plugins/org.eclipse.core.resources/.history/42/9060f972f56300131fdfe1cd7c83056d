@@ -32,21 +32,17 @@ class SearchPage < WebDriverUtils
   end
 
   def open_random_freelancer id
-    puts "Opening freelancer with id: '" + id + "'...\n"
     element = find_element_xpath "//a[@class='oLoadContractor' and contains(@data-olog-data, '#{id}')]"
     click element
     FreelancerPage::new @@driver
   end
 
   def get_random_freelancer
-    puts "Getting random freelancer..."
     $size = get_search_items.length
     i = Common.random_number(1, $size)
 
     id_element = find_element_xpath @@list_item_search + "[#{i}]" + @@id
     id_value = get_element_attribute id_element, @@id_attribute
-    puts "Random freelancer id is '" + id_value + "'"
-    id_value
   end
 
   def get_search_items

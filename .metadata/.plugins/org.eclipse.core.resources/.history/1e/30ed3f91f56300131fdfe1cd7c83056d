@@ -32,7 +32,6 @@ class SearchPage < WebDriverUtils
   end
 
   def open_random_freelancer id
-    puts "Opening freelancer with id: '" + id + "'...\n"
     element = find_element_xpath "//a[@class='oLoadContractor' and contains(@data-olog-data, '#{id}')]"
     click element
     FreelancerPage::new @@driver
