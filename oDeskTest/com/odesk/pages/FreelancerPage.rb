@@ -8,7 +8,7 @@ class FreelancerPage < WebDriverUtils
   @@name = "//h1[@class='oH1Huge']"
   @@job_title = "//h1[@class='oH2High']"
   @@skills = "//section[contains(@class,'oExpandableOneLine oSkills')]"
-  @@overview = "//section[@class='oOverview']/p"
+  @@overview = "//section[@class='oOverview']//p"
   def initialize driver
     @@driver = driver
   end
@@ -42,27 +42,56 @@ class FreelancerPage < WebDriverUtils
   end
 
   def check_freelancer_data freelancer
-    current_result = true
-    current_result = freelancer.get_name <=> get_name
-    current_result = freelancer.get_name <=> get_job_title
-    current_result = get_skills.include?freelancer.get_skills
-    current_result = get_overview.include?freelancer.get_facts
-    current_result = get_overview.include?freelancer.get_description
-
-    if current_result
-      puts "Data is the same"
-    else
-      puts "Data is not the same"
+    $overview_limit = 437
+    $skills_limit = -10
+    result = true
+    puts "\nComparing names: \n1: " + freelancer.get_name + "\n2: " + get_name + "\n"
+    current_result = freelancer.get_name == get_name
+    if !current_result
+      result = false
+      puts "\nName is not the same"
     end
-    current_result
+    puts "\nComparing job titles: \n1: " + freelancer.get_job_title + "\n2: " + get_job_title + "\n"
+    current_result = freelancer.get_job_title == get_job_title
+    if !current_result
+      result = false
+      puts "\nJob title is not the same"
+    end
+    puts "\nComparing skills: \n1: " + freelancer.get_skills + "\n2: " + get_skills + "\n"
+    current_result = freelancer.get_skills.include?get_skills[0..$skills_limit]
+    if !current_result
+      result = false
+      puts "\nSkills are not the same"
+    end
+
+    description = freelancer.get_description
+    overview = get_overview
+
+    description = description.gsub("\n", " ")
+    description = description.gsub("\r", " ")
+    description = description[0..$overview_limit]
+
+    overview = overview.gsub("\n", " ")
+    overview = overview.gsub("\r", " ")
+    overview = overview[0..$overview_limit]
+
+    puts "\nComparing descriptions: \n1: " + description + "\n2: " + overview + "\n"
+    current_result = description == overview
+    #current_result = get_overview == freelancer.get_description
+    if !current_result
+      result = false
+      puts "\nDescription is not the same"
+    end
+
+    result
   end
 
   def check_freelancer keyword
     current_result = Common.find_part_in_array(keyword, get_freelancer_data)
     if current_result
-      puts "Keyword: '" + keyword + "' was found for " + get_name
+      puts "\nKeyword: '" + keyword + "' was found for " + get_name
     else
-      puts "Keyword: '" + keyword + "' was not found for '"  + get_name
+      puts "\nKeyword: '" + keyword + "' was not found for '"  + get_name
     end
     current_result
   end

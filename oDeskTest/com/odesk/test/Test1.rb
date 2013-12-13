@@ -41,9 +41,7 @@ class Test1 < Test::Unit::TestCase
     puts "\nCheck ended\n"
 
     puts "\nComparing user data form search page with data from user page...\n"
-
-    check_freelancer_data get_freelancer(id)
-
+    assert @freelancerPage.check_freelancer_data(@searchPage.get_freelancer(id)), "Data from search page and freelancer page are not the same."
     puts "\nData is compared\n"
 
   end

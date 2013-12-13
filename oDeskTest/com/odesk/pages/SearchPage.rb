@@ -39,7 +39,7 @@ class SearchPage < WebDriverUtils
 
   def get_random_freelancer
     $size = get_search_items.length
-    i = Common.random_number 0, $size
+    i = Common.random_number(1, $size)
 
     id_element = find_element_xpath @@list_item_search + "[#{i}]" + @@id
     id_value = get_element_attribute id_element, @@id_attribute

@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'selenium-webdriver'
 
+require_relative 'FileUtilsClass'
 require_relative 'PropertyUtils'
 class WebDriverUtils
   @@driver = nil
@@ -8,7 +9,6 @@ class WebDriverUtils
     browser = PropertyUtils.get_property "browser"
     @@driver = Selenium::WebDriver.for :"#{browser}"
     @@timeout = Integer PropertyUtils.get_property("timeout")
-    FileUtils.create_dir PropertyUtils.get_property("results_dir")
   end
 
   def get_driver
@@ -62,7 +62,7 @@ class WebDriverUtils
     wait_js_load
     wait = Selenium::WebDriver::Wait.new(:timeout => timeout) # seconds
     begin
-      element = wait.until { element.find_element :xpath => xpath }
+      element = wait.until { @@driver.find_element :xpath => xpath }
       text = element.text
     rescue
       text = ''

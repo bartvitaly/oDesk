@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;oDeskTest/com/odesk/common/FileUtils.rb&apos; to &apos;FileUtilsClass.rb&apos;" description="Rename resource &apos;FileUtils.rb&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="com/odesk/common/FileUtils.rb" name="FileUtilsClass.rb" stamp="1386930883711" updateReferences="true"/>
+</session>
