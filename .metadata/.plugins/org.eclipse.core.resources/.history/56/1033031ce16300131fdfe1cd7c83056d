@@ -1,0 +1,8 @@
+class FileUtils
+  def create_dir name
+    Dir.mkdir(name)
+  end
+  def create_file name
+    File.open(name, 'OPTION') {|f| f.write("write your stuff here") }
+  end
+end

@@ -8,6 +8,7 @@ class WebDriverUtils
     browser = PropertyUtils.get_property "browser"
     @@driver = Selenium::WebDriver.for :"#{browser}"
     @@timeout = Integer PropertyUtils.get_property("timeout")
+    FileUtils.create_dir PropertyUtils.get_property("results_dir")
   end
 
   def get_driver
@@ -51,6 +52,22 @@ class WebDriverUtils
     wait_js_load
     wait = Selenium::WebDriver::Wait.new(:timeout => @@timeout) # seconds
     wait.until { @@driver.find_elements :xpath => xpath }
+  end
+
+  def get_element_attribute element, attribute
+    element.attribute attribute
+  end
+
+  def get_element_text xpath, timeout
+    wait_js_load
+    wait = Selenium::WebDriver::Wait.new(:timeout => timeout) # seconds
+    begin
+      element = wait.until { element.find_element :xpath => xpath }
+      text = element.text
+    rescue
+      text = ''
+    end
+    text
   end
 
   def type element, text

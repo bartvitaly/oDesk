@@ -1,0 +1,155 @@
+require 'page-object'
+require 'selenium/webdriver'
+
+require_relative '../common/Common'
+require_relative '../common/WebDriverUtils'
+require_relative '../entities/Freelancer'
+require_relative '../pages/FreelancerPage'
+class SearchPage < WebDriverUtils
+  include PageObject
+
+  @@input_search = "//input[@name='q']"
+  @@list_item_search = "//ul[@class='oSearchResultsList']/li[@class='oSearchResultItem']"
+
+  @@id = "//article[@class='oMed oContractorSearchResult']"
+  @@id_attribute = "data-contractor-id"
+  @@name = "//span[@itemprop='name']"
+  @@job_title = "//h3[@itemprop='jobTitle role title jobTitle']"
+  @@skills = "//ul[@class='oSkillsList oInlineList']"
+  @@facts = "//section[@class='oContractorFacts']/ul"
+  @@description = "//section[@class='oContractorDescription']/p"
+
+  @@freelancers = Hash["names", []]
+  @@freelancers_hash = Hash[]
+  #@@freelancers_hash = Hash
+  def initialize driver
+    @@driver = driver
+  end
+
+  def search keyword
+    element = find_element_xpath @@input_search
+    submit element, keyword
+  end
+
+  def open_random_freelancer id
+    element = find_element_xpath "//a[@class='oLoadContractor' and contains(@data-olog-data, '#{id}')]"
+    click element
+  end
+
+  def get_random_freelancer
+    $size = get_search_items.length
+    i = Common.random_number 0, $size
+
+    id_element = find_element_xpath @@list_item_search + "[#{i}]" + @@id
+    id_value = get_element_attribute id_element, @@id_attribute
+  end
+
+  def get_search_items
+    find_elements_xpath @@list_item_search
+  end
+
+  def get_ids
+    get_item_attribute(@@id, @@id_attribute)
+  end
+
+  def get_names
+    get_item_detail(@@name)
+  end
+
+  def get_job_titles
+    get_item_detail(@@job_title)
+  end
+
+  def get_skills
+    get_item_detail(@@skills)
+  end
+
+  def get_facts
+    get_item_detail(@@facts)
+  end
+
+  def get_description
+    get_item_detail(@@description)
+  end
+
+  def get_all_freelancers
+    $size = get_search_items.length
+
+    i = 1
+    while i < $size + 1
+      name = find_element_xpath @@list_item_search + "[#{i}]" + @@name
+      job_title = find_element_xpath @@list_item_search + "[#{i}]" + @@job_title
+      skills = find_element_xpath @@list_item_search + "[#{i}]" + @@skills
+      facts = find_element_xpath @@list_item_search + "[#{i}]" + @@facts
+      description = find_element_xpath @@list_item_search + "[#{i}]" + @@description
+
+      id_element = find_element_xpath @@list_item_search + "[#{i}]" + @@id
+      id_value = get_element_attribute id_element, @@id_attribute
+
+      freelancer = Freelancer::new(id_value, name.text, job_title.text, skills.text, facts.text, description.text)
+      @@freelancers_hash[id_value] = freelancer
+
+      i += 1
+    end
+    @@freelancers_hash
+  end
+
+  def get_freelancers id
+    @@freelancers_hash[id]
+  end
+
+  def get_item_detail detail_xpath
+    $size = get_search_items.length
+    details = []
+
+    i = 1
+    while i < $size + 1
+      detail = find_element_xpath @@list_item_search + "[#{i}]" + detail_xpath
+      details << detail.text
+      i += 1
+    end
+    details
+  end
+
+  def get_item_attribute detail_xpath, attribute
+    $size = get_search_items.length
+    details = []
+
+    i = 1
+    while i < $size + 1
+      detail = find_element_xpath @@list_item_search + "[#{i}]" + detail_xpath
+      details << get_element_attribute(detail, attribute)
+      i += 1
+    end
+    details
+  end
+
+  def get_freelancers_hash
+    @@freelancers_hash = Hash[*get_ids]
+  end
+
+  def check_freelancers keyword
+    @result = true
+    @@freelancers_hash.each do |key, freelancer|
+      current_result = Common.find_part_in_array(keyword, freelancer.get_freelancer_array)
+      if current_result
+        puts "Keyword: '" + keyword + "' was found for id: '" + freelancer.get_id + "' and name: '" + freelancer.get_name + "'"
+      end
+      if !current_result
+        puts "Keyword: '" + keyword + "' was not found for id: '" + freelancer.get_id + "' and name: '" + freelancer.get_name + "'"
+        @result = false
+      end
+    end
+    @result
+  end
+
+  def get_freelancers
+    @@freelancers["ids"] = get_ids
+    @@freelancers["names"] = get_names
+    @@freelancers["job_titles"] = get_job_titles
+    @@freelancers["skills"] = get_skills
+    @@freelancers["facts"] = get_facts
+    @@freelancers["description"] = get_description
+  end
+
+end

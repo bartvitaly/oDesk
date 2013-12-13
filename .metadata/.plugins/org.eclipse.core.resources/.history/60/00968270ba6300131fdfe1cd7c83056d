@@ -1,0 +1,6 @@
+class Freelancer
+  def initialize
+
+  end
+
+end

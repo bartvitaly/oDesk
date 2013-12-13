@@ -1,0 +1,12 @@
+class Freelancer
+  @id = ''
+  def initialize id, name, job_title, skills, facts, description
+    @id = id
+    @name = name
+    @job_title = job_title
+    @skills = skills
+    @facts = facts
+    @description = description
+  end
+
+end

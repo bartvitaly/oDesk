@@ -1,0 +1,11 @@
+require 'rubygems'
+
+class Common
+  def self.find_in_array value, array
+    array.include?(value)
+  end
+
+  def self.find_part_in_array value, array
+    array.any?{|s| s.include?(value)}
+  end
+end

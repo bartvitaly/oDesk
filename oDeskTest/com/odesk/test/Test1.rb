@@ -13,10 +13,11 @@ class Test1 < Test::Unit::TestCase
   @@facts = []
   def setup
     #initiate Selenium WebDriver
-    url = PropertyUtils.get_property "url"
+    @url = PropertyUtils.get_property "url"
+    @keyword = PropertyUtils.get_property "keyword"
     @webDriverUtils = WebDriverUtils::new
     @@driver = @webDriverUtils::get_driver
-    @@driver.get url
+    @@driver.get @url
   end
 
   def test
@@ -25,13 +26,30 @@ class Test1 < Test::Unit::TestCase
     @searchPage = @startPage.open_hire_freelancers
 
     #search for a freelancer by keyword
-    @searchPage.search PropertyUtils.get_property "keyword"
-    @@freelancers = @searchPage.get_freelancers
-    puts @@freelancers
+    @searchPage.search @keyword
+    puts "\nChecking for keyword at Search freelancers page...\n"
+    @searchPage.get_all_freelancers
+    assert @searchPage.check_freelancers(@keyword), "Keyword was not found at search page"
+    puts "\nCheck ended\n"
+
+    #open random freelancer
+    id = @searchPage.get_random_freelancer
+    @freelancerPage = @searchPage.open_random_freelancer id
+    puts "\nChecking for keyword in search results...\n"
+    @freelancerPage.get_freelancer_data
+    assert @freelancerPage.check_freelancer(@keyword), "Keyword was not found at freelancer page: " + @freelancerPage.get_name
+    puts "\nCheck ended\n"
+
+    puts "\nComparing user data form search page with data from user page...\n"
+
+    check_freelancer_data get_freelancer(id)
+
+    puts "\nData is compared\n"
 
   end
 
   def teardown
+    @@driver.save_screenshot(PropertyUtils.get_property('results_dir') + 'screenshot.png')
     @@driver.quit
   end
 

@@ -1,0 +1,19 @@
+class Freelancer
+  @freelancer = []
+  def initialize id, name, job_title, skills, facts, description
+    @id = id
+    @name = name
+    @job_title = job_title
+    @skills = skills
+    @facts = facts
+    @description = description
+
+    @freelancer << id
+    @freelancer << name
+    @freelancer << job_title
+    @freelancer << skills
+    @freelancer << facts
+    @freelancer << description
+  end
+
+end

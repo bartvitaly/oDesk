@@ -1,0 +1,10 @@
+class Freelancer
+  def initialize name, job_title, skills, facts, description
+    @@name = name
+    @@job_title
+    @@skills
+    @@facts
+    @@description
+  end
+
+end

@@ -12,7 +12,7 @@ class StartPage < WebDriverUtils
 
   def open_hire_freelancers
     element = find_element_xpath @@lnk_search
-    click element
+    click element    
     SearchPage::new @@driver
   end
 end
