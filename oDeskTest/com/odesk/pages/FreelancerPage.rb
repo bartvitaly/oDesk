@@ -67,12 +67,12 @@ class FreelancerPage < WebDriverUtils
     description = freelancer.get_description
     overview = get_overview
 
-    description = description.gsub("\n", " ")
-    description = description.gsub("\r", " ")
+    # description = description.gsub("\n", "")
+    # description = description.gsub("\r", "")
     description = description[0..$overview_limit]
 
     overview = overview.gsub("\n", " ")
-    overview = overview.gsub("\r", " ")
+    overview = overview.gsub("  ", " ")
     overview = overview[0..$overview_limit]
 
     puts "\nComparing descriptions: \n1: " + description + "\n2: " + overview + "\n"

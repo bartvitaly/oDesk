@@ -1,0 +1,5 @@
+browser=firefox
+url=http://odesk.com/
+keyword=java
+timeout=10
+results_dir=C:\

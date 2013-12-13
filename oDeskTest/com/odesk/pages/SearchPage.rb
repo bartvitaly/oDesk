@@ -32,20 +32,21 @@ class SearchPage < WebDriverUtils
   end
 
   def open_random_freelancer id
-    puts "Opening freelancer with id: '" + id + "'...\n"
-    element = find_element_xpath "//a[@class='oLoadContractor' and contains(@data-olog-data, '#{id}')]"
-    click element
+    puts "\nOpening freelancer with id: '" + id + "'..."
+    element = find_element_xpath @@id + "//a[contains(@data-olog-data, '#{id}')]/span"
+    click_move element
+    #click element
     FreelancerPage::new @@driver
   end
 
   def get_random_freelancer
-    puts "Getting random freelancer..."
+    puts "\nGetting random freelancer..."
     $size = get_search_items.length
     i = Common.random_number(1, $size)
 
     id_element = find_element_xpath @@list_item_search + "[#{i}]" + @@id
     id_value = get_element_attribute id_element, @@id_attribute
-    puts "Random freelancer id is '" + id_value + "'"
+    puts "\nRandom freelancer id is '" + id_value + "'"
     id_value
   end
 
@@ -138,9 +139,9 @@ class SearchPage < WebDriverUtils
     @@freelancers_hash.each do |key, freelancer|
       current_result = Common.find_part_in_array(keyword, freelancer.get_freelancer_array)
       if current_result
-        puts "Keyword: '" + keyword + "' was found for id: '" + freelancer.get_id + "' and name: '" + freelancer.get_name + "'"
+        puts "\nKeyword: '" + keyword + "' was found for id: '" + freelancer.get_id + "' and name: '" + freelancer.get_name + "'"
       else
-        puts "Keyword: '" + keyword + "' was not found for id: '" + freelancer.get_id + "' and name: '" + freelancer.get_name + "'"
+        puts "\nKeyword: '" + keyword + "' was not found for id: '" + freelancer.get_id + "' and name: '" + freelancer.get_name + "'"
         @result = false
       end
     end

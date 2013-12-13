@@ -6,7 +6,7 @@ class Common
   end
 
   def self.find_part_in_array value, array
-    array.any?{|s| s.include?(value)}
+    array.any?{|s| s.downcase.include?(value.downcase)}
   end
 
   def self.random_number min_number, max_number

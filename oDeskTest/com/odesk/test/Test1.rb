@@ -15,6 +15,7 @@ class Test1 < Test::Unit::TestCase
     @webDriverUtils = WebDriverUtils::new
     @driver = @webDriverUtils::get_driver
     @driver.get @url
+    @driver.manage.window.maximize
   end
 
   def test
@@ -24,26 +25,26 @@ class Test1 < Test::Unit::TestCase
 
     #search for a freelancer by keyword
     @searchPage.search @keyword
+    puts "\nChecking for keyword at Search freelancers page..."
     length = @searchPage.get_all_freelancers.length
     if length == 0
-      assert false, "No search results with keyword: '" + @keyword + "'"
+      assert false, "\nNo search results with keyword: '" + @keyword + "'"
     end
 
-    puts "\nChecking for keyword at Search freelancers page...\n"
     assert @searchPage.check_freelancers(@keyword), "Keyword was not found at search page"
-    puts "\nCheck ended\n"
+    puts "\nCheck ended"
 
     #open random freelancer
     id = @searchPage.get_random_freelancer
     @freelancerPage = @searchPage.open_random_freelancer id
-    puts "\nChecking for keyword in search results...\n"
+    puts "\nChecking for keyword in search results..."
     @freelancerPage.get_freelancer_data
     assert @freelancerPage.check_freelancer(@keyword), "Keyword was not found at freelancer page: " + @freelancerPage.get_name
-    puts "\nCheck ended\n"
+    puts "\nCheck ended"
 
-    puts "\nComparing user data form search page with data from user page...\n"
+    puts "\nComparing user data form search page with data from user page..."
     assert @freelancerPage.check_freelancer_data(@searchPage.get_freelancer(id)), "Data from search page and freelancer page are not the same."
-    puts "\nData is compared\n"
+    puts "\nData is compared"
 
   end
 

@@ -19,7 +19,6 @@ class WebDriverUtils
 
   def wait_js_load
     $i = 0
-
     while $i < @@timeout  do
       if @@driver.execute_script("return jQuery.active == 0") then
       break
@@ -65,7 +64,7 @@ class WebDriverUtils
       element = wait.until { @@driver.find_element :xpath => xpath }
       text = element.text
     rescue
-      text = ''
+      text = ""
     end
     text
   end
@@ -80,6 +79,16 @@ class WebDriverUtils
   end
 
   def click element
+    # @@driver.move_to element
+    element.click
+  end
+
+  def click_move element
+    $x = element.location[0]
+    $y = element.location[1] - 200
+
+    @@driver.execute_script("window.scrollBy(#{$x},#{$y})")
+
     element.click
   end
 
