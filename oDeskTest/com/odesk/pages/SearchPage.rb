@@ -13,11 +13,11 @@ class SearchPage < WebDriverUtils
 
   @@id = "//article[@class='oMed oContractorSearchResult']"
   @@id_attribute = "data-contractor-id"
-  @@name = "//span[@itemprop='name']"
-  @@job_title = "//h3[@itemprop='jobTitle role title jobTitle']"
-  @@skills = "//ul[@class='oSkillsList oInlineList']"
-  @@facts = "//section[@class='oContractorFacts']/ul"
-  @@description = "//section[@class='oContractorDescription']/p"
+  @@name = @@id + "//span[@itemprop='name']"
+  @@job_title = @@id  + "//h3[@itemprop='jobTitle role title jobTitle']"
+  @@skills = @@id + "//ul[@class='oSkillsList oInlineList']"
+  @@facts = @@id + "//section[@class='oContractorFacts']/ul"
+  @@description = @@id + "//section[@class='oContractorDescription']/p"
 
   @@btn_close_sign_up_dialog = "//div[contains(@class,'oSignupDialog')]//a/span"
 

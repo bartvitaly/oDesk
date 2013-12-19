@@ -39,8 +39,8 @@ class Test1 < Test::Unit::TestCase
     #open random freelancer
     id = @searchPage.get_random_freelancer
     @freelancerPage = @searchPage.open_random_freelancer id
-    puts "\nChecking for keyword in search results..."
-    puts @freelancerPage.get_freelancer_data
+    puts "DATA:Checking for keyword in search results..."
+    @freelancerPage.get_freelancer_data
     result = @freelancerPage.check_freelancer(@keyword)
     assert result, "Keyword was not found at freelancer page: " + @freelancerPage.get_name
     puts "\nCheck ended"
