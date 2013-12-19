@@ -5,6 +5,7 @@ require "test/unit"
 require_relative '../common/WebDriverUtils'
 require_relative '../common/PropertyUtils'
 require_relative '../pages/StartPage'
+require_relative '../pages/LoginPage'
 require_relative '../pages/SearchPage'
 class Test1 < Test::Unit::TestCase
   @driver = nil
@@ -16,6 +17,7 @@ class Test1 < Test::Unit::TestCase
     @driver = @webDriverUtils::get_driver
     @driver.get @url
     @driver.manage.window.maximize
+    @driver.manage.delete_all_cookies
   end
 
   def test
@@ -38,8 +40,9 @@ class Test1 < Test::Unit::TestCase
     id = @searchPage.get_random_freelancer
     @freelancerPage = @searchPage.open_random_freelancer id
     puts "\nChecking for keyword in search results..."
-    @freelancerPage.get_freelancer_data
-    assert @freelancerPage.check_freelancer(@keyword), "Keyword was not found at freelancer page: " + @freelancerPage.get_name
+    puts @freelancerPage.get_freelancer_data
+    result = @freelancerPage.check_freelancer(@keyword)
+    assert result, "Keyword was not found at freelancer page: " + @freelancerPage.get_name
     puts "\nCheck ended"
 
     puts "\nComparing user data form search page with data from user page..."

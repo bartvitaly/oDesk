@@ -19,10 +19,13 @@ class SearchPage < WebDriverUtils
   @@facts = "//section[@class='oContractorFacts']/ul"
   @@description = "//section[@class='oContractorDescription']/p"
 
+  @@btn_close_sign_up_dialog = "//div[contains(@class,'oSignupDialog')]//a/span"
+
   @@freelancers = Hash["names", []]
   @@freelancers_hash = Hash[]
   #@@freelancers_hash = Hash
   def initialize driver
+    WebDriverUtils.wait_js_load
     @@driver = driver
   end
 
@@ -33,10 +36,22 @@ class SearchPage < WebDriverUtils
 
   def open_random_freelancer id
     puts "\nOpening freelancer with id: '" + id + "'..."
-    element = find_element_xpath @@id + "//a[contains(@data-olog-data, '#{id}')]/span"
+    element = find_element_xpath @@id + "//a[contains(@data-olog-data, '#{id}')]"
+    url = get_element_attribute element, "href"
+    puts "Saving freelancer's profile url"
     click_move element
+    if close_sign_up_dialog
+      puts "Signing in..."
+      @login_page = LoginPage::new @@driver
+    @login_page.login
+    @@driver.get url
+    end
     #click element
     FreelancerPage::new @@driver
+  end
+
+  def close_sign_up_dialog
+    click_if_exists @@btn_close_sign_up_dialog
   end
 
   def get_random_freelancer

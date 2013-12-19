@@ -7,6 +7,7 @@ class StartPage < WebDriverUtils
   include PageObject
   @@lnk_search = "//a[text()='Hire Freelancers']"
   def initialize driver
+    WebDriverUtils.wait_js_load
     @@driver = driver
   end
 

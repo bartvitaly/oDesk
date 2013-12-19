@@ -12,12 +12,13 @@ class WebDriverUtils
   end
 
   def get_driver
+
     @@driver
   #options = driver::Options.new
   #options.delete_all_cookies()
   end
 
-  def wait_js_load
+  def self.wait_js_load
     $i = 0
     while $i < @@timeout  do
       if @@driver.execute_script("return jQuery.active == 0") then
@@ -29,26 +30,50 @@ class WebDriverUtils
 
   end
 
+  def is_element_exist? xpath
+    WebDriverUtils.wait_js_load
+    wait = Selenium::WebDriver::Wait.new(:timeout => @@timeout) # seconds
+
+    begin
+      wait.until { @@driver.find_element :xpath => xpath }
+      true
+    rescue Selenium::WebDriver::Error::TimeOutError
+    false
+    end
+  end
+
+  def is_element_exist_timeout? xpath, timeout
+    WebDriverUtils.wait_js_load
+    wait = Selenium::WebDriver::Wait.new(:timeout => timeout) # seconds
+
+    begin
+      wait.until { @@driver.find_element :xpath => xpath }
+      true
+    rescue Selenium::WebDriver::Error::TimeOutError
+    false
+    end
+  end
+
   def find_element_xpath xpath
-    wait_js_load
+    WebDriverUtils.wait_js_load
     wait = Selenium::WebDriver::Wait.new(:timeout => @@timeout) # seconds
     wait.until { @@driver.find_element :xpath => xpath }
   end
 
   def  find_element_element_xpath element, xpath
-    wait_js_load
+    WebDriverUtils.wait_js_load
     wait = Selenium::WebDriver::Wait.new(:timeout => @@timeout) # seconds
     wait.until { element.find_element :xpath => xpath }
   end
 
   def find_element_element  xpath
-    wait_js_load
+    WebDriverUtils.wait_js_load
     wait = Selenium::WebDriver::Wait.new(:timeout => @@timeout) # seconds
     wait.until { @@driver.find_element :xpath => xpath }
   end
 
   def find_elements_xpath xpath
-    wait_js_load
+    WebDriverUtils.wait_js_load
     wait = Selenium::WebDriver::Wait.new(:timeout => @@timeout) # seconds
     wait.until { @@driver.find_elements :xpath => xpath }
   end
@@ -58,8 +83,8 @@ class WebDriverUtils
   end
 
   def get_element_text xpath, timeout
-    wait_js_load
-    wait = Selenium::WebDriver::Wait.new(:timeout => timeout) # seconds
+    WebDriverUtils.wait_js_load
+    wait = Selenium::WebDriver::Wait.new(:timeout => @@timeout) # seconds
     begin
       element = wait.until { @@driver.find_element :xpath => xpath }
       text = element.text
@@ -90,6 +115,17 @@ class WebDriverUtils
     @@driver.execute_script("window.scrollBy(#{$x},#{$y})")
 
     element.click
+  end
+
+  def  click_if_exists xpath
+    WebDriverUtils.wait_js_load
+    if is_element_exist_timeout? xpath, 0
+      element = find_element_xpath xpath
+      click element
+    true
+    elsif
+    false
+    end
   end
 
 end

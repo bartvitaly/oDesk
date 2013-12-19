@@ -6,7 +6,7 @@ class PropertyUtils
 
   #returns array of property values
   def self.load_properties
-    @properties_filename = File.dirname(__FILE__) + "/test.properties"
+    @properties_filename = File.expand_path("../../../../", __FILE__) + "/test.properties"
     properties = {}
     File.open(@properties_filename, 'r') do |properties_file|
       properties_file.read.each_line do |line|

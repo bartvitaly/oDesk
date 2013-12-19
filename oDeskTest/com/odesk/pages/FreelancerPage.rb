@@ -10,6 +10,7 @@ class FreelancerPage < WebDriverUtils
   @@skills = "//section[contains(@class,'oExpandableOneLine oSkills')]"
   @@overview = "//section[@class='oOverview']//p"
   def initialize driver
+    is_element_exist?"//h1[@class='oH1Huge' and text()!='']"
     @@driver = driver
   end
 
@@ -42,7 +43,7 @@ class FreelancerPage < WebDriverUtils
   end
 
   def check_freelancer_data freelancer
-    $overview_limit = 437
+    $overview_limit = 436
     $skills_limit = -10
     result = true
     puts "\nComparing names: \n1: " + freelancer.get_name + "\n2: " + get_name + "\n"
@@ -87,7 +88,10 @@ class FreelancerPage < WebDriverUtils
   end
 
   def check_freelancer keyword
-    current_result = Common.find_part_in_array(keyword, get_freelancer_data)
+    data = []
+    data = get_freelancer_data
+    puts data
+    current_result = Common.find_part_in_array(keyword, data)
     if current_result
       puts "\nKeyword: '" + keyword + "' was found for " + get_name
     else
